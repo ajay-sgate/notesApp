@@ -1,22 +1,19 @@
-// middlewares/authMiddleware.js
-const jwt = require('jsonwebtoken');
-const { secretKey } = require('../config/secret');
 
-const authenticateToken = (req, res, next) => {
-  const token = req.header('Authorization');
-
-  if (!token) {
-    return res.status(401).json({ error: 'Unauthorized' });
-  }
-
-  jwt.verify(token, secretKey, (err, user) => {
-    if (err) {
-      return res.status(403).json({ error: 'Forbidden' });
+var jwt = require('jsonwebtoken');
+const auth=(req,res,next)=>{
+    const token=req.headers.authorization;
+    if(token){
+        jwt.verify(token.split(" ")[1], 'sgate', function(err, decoded) {
+            if(decoded){
+                req.body.user_id=decoded.user_id
+                next()
+            }else{
+                res.status(400).json({msg:"Token expired/login again"})
+            }
+          });
+      
+    }else{
+        res.status(400).json({msg:"Please Login first"})
     }
-
-    req.user = user;
-    next();
-  });
-};
-
-module.exports = authenticateToken;
+}
+module.exports=auth;
