@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { GetFun, GetSuccess } from "../redux/notesReducer/action";
-import { Grid } from "@chakra-ui/react";
+import { Box, Center, Grid } from "@chakra-ui/react";
 import NoteCard from "../components/NoteCard";
+import ChakraModal from "../components/ChakraModal";
 
 
 
@@ -37,18 +38,27 @@ const Dashboard = () => {
 
     return (
         <>
-            <Grid
-            bgColor={"gray.200"}
-                templateColumns={['1fr', 'repeat(2, 1fr)', 'repeat(3, 1fr)', 'repeat(4, 1fr)']}
-                gap={4}
-                p={8}
-                pt={24}
-                minH={"87vh"}
-            >
-                {notes && notes.map((note) => (
-                    <NoteCard key={note.id} note={note} onDelete={handleDelete} onEdit={handleEdit} />
-                ))}
-            </Grid>
+            <Box bgColor={"gray.200"} p={4}
+                pt={24}>
+                    <Center>
+
+                <ChakraModal />
+                    </Center>
+                <Grid
+                    
+                    templateColumns={['1fr', 'repeat(2, 1fr)', 'repeat(3, 1fr)', 'repeat(4, 1fr)']}
+                    gap={4}
+                    mt={4}
+                    minH={"64vh"}
+                >
+
+
+                    {notes && notes.map((note) => (
+                        <NoteCard key={note.id} note={note} onDelete={handleDelete} onEdit={handleEdit} />
+                    ))}
+
+                </Grid>
+            </Box>
         </>
     )
 }
