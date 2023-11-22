@@ -1,0 +1,15 @@
+export const GET_REQUEST = "GET_REQUEST"
+export const GET_SUCCESS = "GET_SUCCESS"
+export const GET_FAILED = "GET_FAILED"
+
+export const POST_REQUEST = "POST_REQUEST"
+export const POST_SUCCESS = "POST_SUCCESS"
+export const POST_FAILED = "POST_FAILED"
+
+export const PATCH_REQUEST = "PATCH_REQUEST"
+export const PATCH_SUCCESS = "PATCH_SUCCESS"
+export const PATCH_FAILED = "PATCH_FAILED"
+
+export const DELETE_REQUEST = "DELETE_REQUEST"
+export const DELETE_SUCCESS = "DELETE_SUCCESS"
+export const DELETE_FAILED = "DELETE_FAILED"

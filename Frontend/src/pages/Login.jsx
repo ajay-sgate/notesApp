@@ -42,7 +42,7 @@ const Login = () => {
                         isClosable: true,
                     })
 
-                    navigate("/")
+                    navigate("/dash")
                     localStorage.setItem("token", res.data.token)
                 }
             }).catch((err) => {
