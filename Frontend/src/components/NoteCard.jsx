@@ -29,6 +29,11 @@ const NoteCard = ({ note, onDelete, onEdit }) => {
         <Button colorScheme="teal" onClick={() => onEdit(note.id)}>
           Edit
         </Button>
+        <Button colorScheme="blue" 
+        // onClick={() => onEdit(note.id)}
+        >
+          View
+        </Button>
         <Button colorScheme="red" onClick={() => onDelete(note.id)}>
           Delete
         </Button>
