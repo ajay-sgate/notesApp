@@ -7,8 +7,6 @@ import {
   Text,
   Button,
   Stack,
-  Icon,
-  useColorModeValue,
   createIcon,
 } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
@@ -27,12 +25,12 @@ export default function Home() {
             fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }}
             lineHeight={'110%'}>
             Free Notes Taking App <br />
-            <Text as={'span'} color={'green.400'}>
-            for your personal use
+            <Text as={'span'} color={'teal'}>
+              for your personal use
             </Text>
           </Heading>
           <Text color={'gray.500'}>
-          Transform thoughts into reality with our notes app. Capture ideas on the fly, effortlessly turning them into reality. Your creativity, our canvas. Make every note a step closer to realizing your dreams.
+            Transform thoughts into reality with our notes app. Capture ideas on the fly, effortlessly turning them into reality. Your creativity, our canvas. Make every note a step closer to realizing your dreams.
           </Text>
           <Stack
             direction={'column'}
@@ -43,13 +41,10 @@ export default function Home() {
             <Link to='/register'>
 
               <Button
-                colorScheme={'green'}
-                bg={'green.400'}
+                colorScheme={'teal'}
                 rounded={'full'}
                 px={6}
-                _hover={{
-                  bg: 'green.500',
-                }}>
+              >
                 Get Started
               </Button>
             </Link>

@@ -38,16 +38,12 @@ const Navbar = () => {
       >
         <Flex alignItems="center" justifyContent="space-between" mx="auto">
           <Flex>
-            <chakra.a
-              href="/"
-              title="Choc Home Page"
-              display="flex"
-              alignItems="center"
-            >
+            <Link to="/">
               <chakra.h1 fontSize="xl" fontWeight="medium" ml="2">
                 Notes App
               </chakra.h1>
-            </chakra.a>
+            </Link>
+
           </Flex>
           <HStack display="flex" alignItems="center" spacing={1}>
             <HStack
@@ -59,12 +55,10 @@ const Navbar = () => {
                 md: "inline-flex",
               }}
             >
-              <Button variant="ghost">Features</Button>
-              <Button variant="ghost">Pricing</Button>
-              <Button variant="ghost">Blog</Button>
-<Link to="/dash">
-              <Button variant="ghost">Dashboard</Button>
-</Link>
+              <Link to="/dash">
+                <Button variant="ghost">Dashboard</Button>
+              </Link>
+
               {!isAuth &&
                 <Link to='/login'>
                   <Button colorScheme="teal">Log in</Button>
@@ -116,27 +110,25 @@ const Navbar = () => {
                   aria-label="Close menu"
                   onClick={mobileNav.onClose}
                 />
-
-                <Button w="full" variant="ghost">
-                  Features
-                </Button>
-                <Button w="full" variant="ghost">
-                  Pricing
-                </Button>
-                <Button w="full" variant="ghost">
-                  Blog
-                </Button>
-                <Button w="full" variant="ghost">
-                  Company
-                </Button>
-                <Link to='/login'>
+                <Link to='/dash'>
                   <Button w="full" variant="ghost">
-                    Log in
+                    Dashboard
                   </Button>
                 </Link>
-                <Button w="full" variant="ghost">
-                  Log Out
-                </Button>
+
+                {!isAuth &&
+                  <Link to='/login'>
+                    <Button w="full" variant="ghost">
+                      Log in
+                    </Button>
+                  </Link>
+                }
+
+                {isAuth &&
+                  <Button w="full" variant="ghost" onClick={handleSignOut}>
+                    Log Out
+                  </Button>
+                }
 
               </VStack>
             </Box>
