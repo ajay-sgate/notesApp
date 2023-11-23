@@ -62,7 +62,9 @@ const Navbar = () => {
               <Button variant="ghost">Features</Button>
               <Button variant="ghost">Pricing</Button>
               <Button variant="ghost">Blog</Button>
-              <Button variant="ghost">Company</Button>
+<Link to="/dash">
+              <Button variant="ghost">Dashboard</Button>
+</Link>
               {!isAuth &&
                 <Link to='/login'>
                   <Button colorScheme="teal">Log in</Button>
