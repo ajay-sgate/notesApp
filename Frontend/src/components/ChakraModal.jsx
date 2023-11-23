@@ -7,7 +7,7 @@ export default function ChakraModal() {
   const toast = useToast();
   const dispatch = useDispatch()
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const [noteData, setNoteData] = useState({
+  const [notesData, setNotesData] = useState({
     "title": "",
     "content": ""
   })
@@ -17,8 +17,8 @@ export default function ChakraModal() {
 
   const handleChange = (e) => {
 
-    setNoteData(() => {
-      return { ...noteData, [e.target.name]: e.target.value }
+    setNotesData(() => {
+      return { ...notesData, [e.target.name]: e.target.value }
     })
 
   }
@@ -34,15 +34,21 @@ export default function ChakraModal() {
 
   const handleSubmit = () => {
 
-    dispatch(PostFunc(noteData)).then((res) => {
+    dispatch(PostFunc(notesData)).then((res) => {
       dispatch(PostSuccess)
       toast({
         title: res.data.message,
         status: "success",
         position: "top-center",
         isClosable: true,
-    })
+      })
       getData()
+      setNotesData(() => {
+        return {
+          "title": "",
+          "content": ""
+        }
+      })
       onClose()
     }).catch((err) => {
       dispatch(PostFail)
@@ -51,8 +57,8 @@ export default function ChakraModal() {
         status: "error",
         position: "top-center",
         isClosable: true,
-    })
-    onClose()
+      })
+      onClose()
     })
 
   }
@@ -74,17 +80,17 @@ export default function ChakraModal() {
           <ModalBody pb={6}>
             <FormControl>
               <FormLabel>Title</FormLabel>
-              <Input ref={initialRef} placeholder='Enter your note title here' value={noteData.title} name="title" type="text" onChange={(e) => handleChange(e)} />
+              <Input ref={initialRef} placeholder='Enter your note title here' value={notesData.title} name="title" type="text" onChange={(e) => handleChange(e)} />
             </FormControl>
 
             <FormControl mt={4}>
               <FormLabel>Content</FormLabel>
-              <Input placeholder='Enter your note content here' value={noteData.content} name="content" type="text" onChange={(e) => handleChange(e)} />
+              <Input placeholder='Enter your note content here' value={notesData.content} name="content" type="text" onChange={(e) => handleChange(e)} />
             </FormControl>
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme='blue' mr={3} onClick={handleSubmit}>
+            <Button colorScheme='blue' mr={3} isDisabled={!notesData.title || !notesData.content} onClick={handleSubmit}>
               Create
             </Button>
             <Button onClick={onClose}>Cancel</Button>

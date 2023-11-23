@@ -29,7 +29,7 @@ export default function Home() {
               for your personal use
             </Text>
           </Heading>
-          <Text color={'gray.500'}>
+          <Text color={'gray.400'}>
             Transform thoughts into reality with our notes app. Capture ideas on the fly, effortlessly turning them into reality. Your creativity, our canvas. Make every note a step closer to realizing your dreams.
           </Text>
           <Stack

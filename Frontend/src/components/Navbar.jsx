@@ -1,13 +1,16 @@
-import { Box, Button, CloseButton, Flex, HStack, IconButton, VStack, chakra, useColorModeValue, useDisclosure, useToast } from "@chakra-ui/react";
+import { Box, Button, CloseButton, Flex, HStack, IconButton, VStack, chakra, useColorMode, useColorModeValue, useDisclosure, useToast } from "@chakra-ui/react";
 import { AiOutlineMenu } from 'react-icons/ai';
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { SignoutFun } from "../redux/authReducer/action";
+import { MoonIcon, SunIcon } from '@chakra-ui/icons'
+
 const Navbar = () => {
   const { isAuth } = useSelector((store) => store.authReducer);
   const dispatch = useDispatch();
   const toast = useToast();
   const navigate = useNavigate();
+  const { colorMode, toggleColorMode } = useColorMode()
   const bg = useColorModeValue("white", "gray.800");
   const mobileNav = useDisclosure();
 
@@ -68,6 +71,10 @@ const Navbar = () => {
               {isAuth &&
                 <Button onClick={handleSignOut} colorScheme="teal">Log Out</Button>
               }
+
+              <Button onClick={toggleColorMode}>
+                {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+              </Button>
             </HStack>
             <Box
               display={{
@@ -129,6 +136,10 @@ const Navbar = () => {
                     Log Out
                   </Button>
                 }
+
+                <Button onClick={toggleColorMode}>
+                  {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+                </Button>
 
               </VStack>
             </Box>

@@ -36,29 +36,29 @@ export default function EditModal({ note }) {
     const handleSubmit = () => {
 
         if (confirm("Alert! You want to update this note ?") == true) {
-            console.log("yes");
-        }
 
-        dispatch(UpdateFunc(noteData)).then((res) => {
-          dispatch(UpdateSuccess)
-          toast({
-            title: res.data.message,
-            status: "success",
-            position: "top-center",
-            isClosable: true,
-        })
-          getData()
-          onClose()
-        }).catch((err) => {
-          dispatch(UpdateFail)
-          toast({
-            title: err.response.data.msg,
-            status: "error",
-            position: "top-center",
-            isClosable: true,
-        })
-        onClose()
-        })
+
+            dispatch(UpdateFunc(noteData)).then((res) => {
+                dispatch(UpdateSuccess)
+                toast({
+                    title: res.data.message,
+                    status: "success",
+                    position: "top-center",
+                    isClosable: true,
+                })
+                getData()
+                onClose()
+            }).catch((err) => {
+                dispatch(UpdateFail)
+                toast({
+                    title: err.response.data.msg,
+                    status: "error",
+                    position: "top-center",
+                    isClosable: true,
+                })
+                onClose()
+            })
+        }
 
     }
 
@@ -89,7 +89,7 @@ export default function EditModal({ note }) {
                     </ModalBody>
 
                     <ModalFooter>
-                        <Button colorScheme='blue' mr={3} onClick={handleSubmit}>
+                        <Button colorScheme='blue' mr={3} isDisabled={!noteData.title || !noteData.content} onClick={handleSubmit}>
                             Update
                         </Button>
                         <Button onClick={onClose}>Cancel</Button>

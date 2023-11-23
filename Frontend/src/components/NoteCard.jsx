@@ -1,10 +1,11 @@
 import React from 'react';
-import { HStack, Box, Button, Flex, Heading, Text } from '@chakra-ui/react';
+import { HStack, Box, Button, Flex,  Text,  } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import EditModal from './EditModal';
 import ViewModal from './ViewModal';
 
 const NoteCard = ({ note, onDelete }) => {
+
   const truncateText = (text, limit) => {
     return (text.length > limit ? text.slice(0, limit) + " ..." : text);
   };
@@ -23,10 +24,10 @@ const NoteCard = ({ note, onDelete }) => {
     >
       <Box bgColor="white" p={6} maxW={"100%"} borderRadius="lg"
         boxShadow="lg" >
-        <Text mb={2} fontWeight="bold" fontSize="xl">
+        <Text mb={2} fontWeight="bold" fontSize="xl"  color={"black"}>
           Title: {truncateText(note.title, 15)}
         </Text>
-        <Text mb={2}  >
+        <Text mb={2} color={"black"} >
           Content: {truncateText(note.content, 20)}
         </Text>
         <Text mb={2} fontSize="sm" color="gray.500">
