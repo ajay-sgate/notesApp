@@ -86,7 +86,7 @@ const Navbar = () => {
                     <br />
                     <Center>
                       <Avatar
-                        size={'2xl'}
+                        size={'xl'}
                         name={userName}
                       />
                     </Center>
@@ -95,17 +95,19 @@ const Navbar = () => {
                       <p>{userName}</p>
                     </Center>
                     <br />
-                    <MenuDivider />
-                    <MenuItem px={"16"} >             
-                     <Link to="/dash">
-                      <Button variant="link" color={"black"}>Dashboard</Button>
-                    </Link></MenuItem>
+                    {/* <MenuDivider /> */}
+                    <hr/>
+                    <MenuItem px={"16"} _hover={{bgColor:"blue.100"}} >
+                      <Link to="/dash">
+                        <Button variant="link" color={"black"} _hover={{ textDecoration: "none" }}>Dashboard</Button>
+                      </Link></MenuItem>
 
-                    <MenuItem px={"20"} bgColor={"red.500"} color={"white"} textAlign={"center"}><Tooltip label='Log out'>
+  
+                    <MenuItem px={"20"} _hover={{bgColor:"red.500" , color:"white"}} textAlign={"center"}>
 
-                      <Button onClick={handleSignOut} color={"white"} variant={"link"} >Logout</Button>
-                    </Tooltip>
+                      <Button onClick={handleSignOut} color={"black"}  variant={"link"} _hover={{ textDecoration: "none" , color:"white"}}>Logout</Button>
                     </MenuItem>
+  
                   </MenuList>
                 </Menu>
               }
