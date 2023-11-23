@@ -1,8 +1,8 @@
-import { Button, ModalOverlay, Modal, useDisclosure, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter, useToast } from "@chakra-ui/react"
+import { Button, ModalOverlay, Modal, useDisclosure, ModalContent, ModalHeader, ModalCloseButton, ModalBody, FormControl, FormLabel, Input, ModalFooter, useToast, Tooltip } from "@chakra-ui/react"
 import { useRef, useState } from "react"
 import { useDispatch } from "react-redux"
 import { GetFail, GetFunc, GetSuccess, PostFail, PostFunc, PostSuccess, UpdateFail, UpdateFunc, UpdateSuccess } from "../redux/notesReducer/action"
-
+import { EditIcon } from '@chakra-ui/icons'
 export default function EditModal({ note }) {
     const toast = useToast();
     const dispatch = useDispatch()
@@ -64,7 +64,14 @@ export default function EditModal({ note }) {
 
     return (
         <>
-            <Button colorScheme="teal" onClick={onOpen}>Edit</Button>
+            <Tooltip label='Edit Note'>
+
+
+                <Button colorScheme="teal" onClick={onOpen}>
+                    <EditIcon />
+                </Button>
+
+            </Tooltip>
 
             <Modal
                 initialFocusRef={initialRef}

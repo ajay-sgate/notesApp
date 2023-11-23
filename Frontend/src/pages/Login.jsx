@@ -34,14 +34,13 @@ const Login = () => {
         if (formData.email && emailRegex.test(formData.email)) {
             dispatch(SigninFun(formData)).then((res) => {
                 if (res.data.token) {
-                    dispatch(SigninSuc)
+                    dispatch(SigninSuc({ token: res.data.token, username: res.data.username }))
                     toast({
                         title: res.data.msg,
                         status: "success",
                         position: "top-center",
                         isClosable: true,
                     })
-
                     navigate("/dash")
                     localStorage.setItem("token", res.data.token)
                 }
@@ -82,12 +81,12 @@ const Login = () => {
             <Stack spacing={6}>
                 <Input placeholder="Enter your Email" name="email" type="email" value={formData.email} onChange={(e) => handleChange(e)} isRequired />
                 <Input type="password" placeholder="Enter your Password" name="password" value={formData.password} onChange={(e) => handleChange(e)} isRequired />
-                <Button isDisabled={!formData.email || !formData.password}  colorScheme="teal" onClick={handleSubmit}>Login</Button>
-            <Center mt={4}>
-                <Link to="/register">
-                    <Button>Join Us</Button>
-                </Link>
-            </Center>
+                <Button isDisabled={!formData.email || !formData.password} colorScheme="teal" onClick={handleSubmit}>Login</Button>
+                <Center mt={4}>
+                    <Link to="/register">
+                        <Button>Join Us</Button>
+                    </Link>
+                </Center>
             </Stack>
 
         </MotionBox>

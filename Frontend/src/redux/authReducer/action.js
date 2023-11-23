@@ -20,8 +20,8 @@ export const SignupFun = (formData) => (dispatch) => {
 
 // Sign In
 
-export const SigninSuc = (dispatch) => {
-    dispatch({ type: SIGNIN_SUCCESS })
+export const SigninSuc = (payload) => (dispatch) => {
+    dispatch({ type: SIGNIN_SUCCESS, payload: payload })
 }
 
 export const SigninFail = (dispatch) => {

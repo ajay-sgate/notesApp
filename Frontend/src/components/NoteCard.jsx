@@ -1,9 +1,9 @@
 import React from 'react';
-import { HStack, Box, Button, Flex,  Text,  } from '@chakra-ui/react';
+import { Box, Button, Flex, Text, Tooltip, } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import EditModal from './EditModal';
 import ViewModal from './ViewModal';
-
+import { DeleteIcon } from '@chakra-ui/icons'
 const NoteCard = ({ note, onDelete }) => {
 
   const truncateText = (text, limit) => {
@@ -24,7 +24,7 @@ const NoteCard = ({ note, onDelete }) => {
     >
       <Box bgColor="white" p={6} maxW={"100%"} borderRadius="lg"
         boxShadow="lg" >
-        <Text mb={2} fontWeight="bold" fontSize="xl"  color={"black"}>
+        <Text mb={2} fontWeight="bold" fontSize="xl" color={"black"}>
           Title: {truncateText(note.title, 15)}
         </Text>
         <Text mb={2} color={"black"} >
@@ -37,10 +37,13 @@ const NoteCard = ({ note, onDelete }) => {
 
           <EditModal note={note} />
 
-          <ViewModal note={note}/> 
-          <Button colorScheme="red" onClick={() => onDelete(note.id)}>
-            Delete
-          </Button>
+          <ViewModal note={note} />
+          <Tooltip label='Delete Note'>
+            <Button colorScheme="red" onClick={() => onDelete(note.id)}>
+
+              <DeleteIcon />
+            </Button>
+          </Tooltip>
         </Flex>
       </Box>
     </motion.div>

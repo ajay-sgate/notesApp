@@ -5,6 +5,7 @@ const initialState = {
     isError: false,
     isAuth: false,
     token: null,
+    userName:null,
 }
 
 
@@ -14,7 +15,7 @@ export const reducer = (state = initialState, { type, payload }) => {
             return { ...state, isLoading: true }
 
         case SIGNIN_SUCCESS:
-            return { ...state, isLoading: false, isAuth: true, token: payload }
+            return { ...state, isLoading: false, isAuth: true, token: payload.token , userName:payload.username }
 
         case SIGNIN_FAILED:
             return { ...state, isLoading: false, isError: true }
@@ -32,7 +33,7 @@ export const reducer = (state = initialState, { type, payload }) => {
             return { ...state, isLoading: true }
 
         case SIGNOUT_SUCCESS:
-            return { ...state, isLoading: false, isAuth: false, token: null }
+            return { ...state, isLoading: false, isAuth: false, token: null, userName :null }
 
         case SIGNOUT_FAILED:
             return { ...state, isLoading: false, isError: true }

@@ -7,9 +7,9 @@ const UserRouter = express.Router();
 // User Registration
 
 UserRouter.post('/register', async (req, res) => {
-    const { email, password } = req.body;
+    const { name, email, password } = req.body;
 
-    if (email && password) {
+    if (name && email && password) {
 
         try {
 
@@ -21,7 +21,8 @@ UserRouter.post('/register', async (req, res) => {
 
             const hashedPassword = await bcrypt.hash(password, 5);
 
-            await db.promise().query('INSERT INTO auth (email, password) VALUES (?, ?)', [
+            await db.promise().query('INSERT INTO auth (name, email, password) VALUES (?, ?, ?)', [
+                name,
                 email,
                 hashedPassword,
             ]);
@@ -46,7 +47,7 @@ UserRouter.post("/login", async (req, res) => {
 
     try {
         if (!email || !password) {
-            return res.status(400).json({ msg: "Please Provide Credentials" });
+            return res.status(400).json({ msg: "Please Provide all Credentials" });
         }
 
         const [userdata] = await db.promise().query("SELECT * FROM auth WHERE email=?", [email]);
@@ -64,7 +65,7 @@ UserRouter.post("/login", async (req, res) => {
 
             if (result) {
                 const token = jwt.sign({ user_id: userdata[0].id }, 'sgate');
-                return res.status(200).json({ msg: "Login Successfull", token });
+                return res.status(200).json({ msg: "Login Successfull", token, username: userdata[0].name });
             } else {
                 return res.status(400).json({ msg: "Please Enter Correct Credentials !!!" });
             }
@@ -77,6 +78,6 @@ UserRouter.post("/login", async (req, res) => {
     }
 });
 
-    
 
-    module.exports={UserRouter}
+
+module.exports = { UserRouter }

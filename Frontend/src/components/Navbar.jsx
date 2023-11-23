@@ -1,12 +1,14 @@
-import { Box, Button, CloseButton, Flex, HStack, IconButton, VStack, chakra, useColorMode, useColorModeValue, useDisclosure, useToast } from "@chakra-ui/react";
+import { Avatar, Box, Button, Center, CloseButton, Flex, HStack, IconButton, Menu, MenuButton, MenuDivider, MenuItem, MenuList, Tooltip, VStack, Wrap, WrapItem, chakra, useColorMode, useColorModeValue, useDisclosure, useToast } from "@chakra-ui/react";
 import { AiOutlineMenu } from 'react-icons/ai';
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { SignoutFun } from "../redux/authReducer/action";
 import { MoonIcon, SunIcon } from '@chakra-ui/icons'
+import { FaPowerOff } from "react-icons/fa";
 
 const Navbar = () => {
-  const { isAuth } = useSelector((store) => store.authReducer);
+
+  const { isAuth, userName } = useSelector((store) => store.authReducer);
   const dispatch = useDispatch();
   const toast = useToast();
   const navigate = useNavigate();
@@ -58,9 +60,7 @@ const Navbar = () => {
                 md: "inline-flex",
               }}
             >
-              <Link to="/dash">
-                <Button variant="ghost">Dashboard</Button>
-              </Link>
+
 
               {!isAuth &&
                 <Link to='/login'>
@@ -69,12 +69,54 @@ const Navbar = () => {
               }
 
               {isAuth &&
-                <Button onClick={handleSignOut} colorScheme="teal">Log Out</Button>
-              }
 
-              <Button onClick={toggleColorMode}>
-                {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
-              </Button>
+                <Menu>
+                  <MenuButton
+                    as={Button}
+                    rounded={'full'}
+                    variant={'link'}
+                    cursor={'pointer'}
+                    minW={0}>
+                    <Avatar
+                      size={'sm'}
+                      src={'https://api.dicebear.com/7.x/fun-emoji/svg'}
+                    />
+                  </MenuButton>
+                  <MenuList alignItems={'center'}>
+                    <br />
+                    <Center>
+                      <Avatar
+                        size={'2xl'}
+                        name={userName}
+                      />
+                    </Center>
+                    <br />
+                    <Center>
+                      <p>{userName}</p>
+                    </Center>
+                    <br />
+                    <MenuDivider />
+                    <MenuItem px={"16"} >             
+                     <Link to="/dash">
+                      <Button variant="link" color={"black"}>Dashboard</Button>
+                    </Link></MenuItem>
+
+                    <MenuItem px={"20"} bgColor={"red.500"} color={"white"} textAlign={"center"}><Tooltip label='Log out'>
+
+                      <Button onClick={handleSignOut} color={"white"} variant={"link"} >Logout</Button>
+                    </Tooltip>
+                    </MenuItem>
+                  </MenuList>
+                </Menu>
+              }
+              <Tooltip label={colorMode === 'light' ? 'dark mode' : 'light mode'}>
+
+                <Button bgColor={"none"} onClick={toggleColorMode}>
+                  {colorMode === 'light' ? <MoonIcon /> : <SunIcon color={"orange"} />}
+                </Button>
+              </Tooltip>
+
+
             </HStack>
             <Box
               display={{

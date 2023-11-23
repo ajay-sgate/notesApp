@@ -13,6 +13,7 @@ const Register = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
+        "name":"",
         "email": "",
         "password": ""
     })
@@ -68,14 +69,15 @@ const Register = () => {
             maxW="400px"
             w="100%"
             mx="auto"
-            pt="150px"
+            pt="100px"
             h="90vh"
         >
             <Heading m="6" textAlign="center">Registration Form</Heading>
             <Stack spacing={6}>
+                <Input placeholder="Enter your Name" name="name" type="text" value={formData.name} onChange={(e) => handleChange(e)} isRequired />
                 <Input placeholder="Enter your Email" name="email" type="email" value={formData.email} onChange={(e) => handleChange(e)} isRequired />
                 <Input type="password" placeholder="Enter your Password" name="password" value={formData.password} onChange={(e) => handleChange(e)} isRequired />
-                <Button isDisabled={!formData.email || !formData.password} colorScheme="teal" onClick={handleSubmit}>Register</Button>
+                <Button isDisabled={!formData.name || !formData.email || !formData.password} colorScheme="teal" onClick={handleSubmit}>Register</Button>
                 <Center mt={4}>
                     <Link to="/login">
                         <Button>Already Registered</Button>
