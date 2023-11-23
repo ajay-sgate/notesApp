@@ -14,7 +14,7 @@ const Navbar = () => {
   const handleSignOut = () => {
     dispatch(SignoutFun())
     toast({
-      title: "Sign out Success",
+      title: "Log out Success",
       status: "success",
       position: "top-center",
       isClosable: true,

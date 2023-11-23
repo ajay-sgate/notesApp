@@ -8,7 +8,7 @@ const NotesRouter = express.Router();
 NotesRouter.get("/", async (req, res) => {
     const { user_id } = req.body
     try {
-        const [results] = await db.promise().query("SELECT * FROM notes WHERE user_id=?", [user_id])
+        const [results] = await db.promise().query("SELECT * FROM notes WHERE user_id=? ORDER BY id DESC", [user_id])
         res.status(200).json(results)
     } catch (err) {
         res.status(400).json({ msg: err })
@@ -46,7 +46,7 @@ NotesRouter.post("/add", async (req, res) => {
 
 // Update note of particular user by note id
 
-NotesRouter.patch("/:id", async (req, res) => {
+NotesRouter.patch("/update/:id", async (req, res) => {
     const { title, content, user_id } = req.body;
     const noteId = req.params.id;
 
@@ -63,7 +63,7 @@ NotesRouter.patch("/:id", async (req, res) => {
 // Delete note of particular user by note id
 
 
-NotesRouter.delete("/:id", async (req, res) => {
+NotesRouter.delete("/delete/:id", async (req, res) => {
     const { user_id } = req.body;
     const noteId = req.params.id;
 

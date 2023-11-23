@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { GetFun, GetSuccess } from "../redux/notesReducer/action";
-import { Box, Center, Grid } from "@chakra-ui/react";
+import { DeleteFail, DeleteFunc, DeleteSuccess, GetFail, GetFunc, GetSuccess } from "../redux/notesReducer/action";
+import { Box, Center, Grid, useToast } from "@chakra-ui/react";
 import NoteCard from "../components/NoteCard";
 import ChakraModal from "../components/ChakraModal";
 
@@ -9,12 +9,34 @@ import ChakraModal from "../components/ChakraModal";
 
 
 const Dashboard = () => {
+    const toast = useToast();
     const dispatch = useDispatch();
     const { notes } = useSelector((store) => store.notesReducer)
 
     const handleDelete = (noteId) => {
         // Implement delete functionality and update state
-        console.log("delete btn")
+        if (confirm("Alert! You want to delete this note ?") == true) {
+            // console.log(noteId,"delete btn")
+
+            dispatch(DeleteFunc(noteId)).then((res)=>{
+                dispatch(DeleteSuccess)
+                getData()
+                toast({
+                    title: res.data.message,
+                    status: "warning",
+                    position: "top-center",
+                    isClosable: true,
+                })
+            }).catch((err)=>{
+                dispatch(DeleteFail)
+                toast({
+                    title: err.response.data.msg,
+                    status: "error",
+                    position: "top-center",
+                    isClosable: true,
+                })
+            })
+          }
     };
 
     const handleEdit = (noteId) => {
@@ -23,12 +45,10 @@ const Dashboard = () => {
     };
 
     const getData = () => {
-        dispatch(GetFun).then((res) => {
-            console.log(res.data)
+        dispatch(GetFunc).then((res) => {
             dispatch(GetSuccess(res.data))
         }).catch((err) => {
-            console.log(err)
-
+            dispatch(GetFail)
         })
     }
 
@@ -40,16 +60,16 @@ const Dashboard = () => {
         <>
             <Box bgColor={"gray.200"} p={4}
                 pt={24}>
-                    <Center>
+                <Center>
 
-                <ChakraModal />
-                    </Center>
+                    <ChakraModal />
+                </Center>
                 <Grid
-                    
+
                     templateColumns={['1fr', 'repeat(2, 1fr)', 'repeat(3, 1fr)', 'repeat(4, 1fr)']}
-                    gap={4}
-                    mt={4}
-                    minH={"64vh"}
+                    gap={8}
+                    mt={6}
+                    minH={"62vh"}
                 >
 
 
