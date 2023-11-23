@@ -26,7 +26,7 @@ UserRouter.post('/register', async (req, res) => {
                 hashedPassword,
             ]);
 
-            res.status(200).json({ msg: 'User Registered Successfully' });
+            res.status(200).json({ msg: 'User Registered Successfull' });
         } catch (err) {
             console.error(err);
             res.status(400).json({ msg: err.message || 'Something went wrong' });
@@ -64,9 +64,9 @@ UserRouter.post("/login", async (req, res) => {
 
             if (result) {
                 const token = jwt.sign({ user_id: userdata[0].id }, 'sgate');
-                return res.status(200).json({ msg: "Login Successfully", token });
+                return res.status(200).json({ msg: "Login Successfull", token });
             } else {
-                return res.status(400).json({ msg: "Please Enter Correct Credentials" });
+                return res.status(400).json({ msg: "Please Enter Correct Credentials !!!" });
             }
         } else {
             return res.status(400).json({ msg: "User Is Not Registered" });

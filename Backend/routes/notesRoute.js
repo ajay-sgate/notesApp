@@ -36,7 +36,7 @@ NotesRouter.post("/add", async (req, res) => {
 
     try {
         const [results] = await db.promise().query('INSERT INTO notes (title, content, user_id) VALUES (?, ?, ?)', [title, content, user_id])
-        res.status(200).json({ message: 'Note created successfully' });
+        res.status(200).json({ message: 'Note successfully created !!' });
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: 'Internal Server Error' });
@@ -52,7 +52,7 @@ NotesRouter.patch("/update/:id", async (req, res) => {
 
     try {
         const [results] = await db.promise().query('UPDATE notes SET title = ?, content = ? WHERE id = ? AND user_id = ?', [title, content, noteId, user_id])
-        res.status(200).json({ message: 'Note updated successfully' });
+        res.status(200).json({ message: 'Note successfully updated !!' });
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: 'Internal Server Error' });
@@ -69,7 +69,7 @@ NotesRouter.delete("/delete/:id", async (req, res) => {
 
     try {
         const [results] = await db.promise().query('DELETE FROM notes WHERE id = ? AND user_id = ?', [noteId, user_id])
-        res.status(200).json({ message: 'Note deleted successfully' });
+        res.status(200).json({ message: 'Note successfully deleted !!' });
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: 'Internal Server Error' });
