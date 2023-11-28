@@ -9,9 +9,11 @@ import {
   Stack,
   createIcon,
 } from '@chakra-ui/react'
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
 
 export default function Home() {
+  const { isAuth } = useSelector((store) => store.authReducer);
   return (
     <>
       <Container maxW={'3xl'} height={'90vh'}>
@@ -32,23 +34,44 @@ export default function Home() {
           <Text color={'gray.400'}>
             Transform thoughts into reality with our notes app. Capture ideas on the fly, effortlessly turning them into reality. Your creativity, our canvas. Make every note a step closer to realizing your dreams.
           </Text>
-          <Stack
-            direction={'column'}
-            spacing={2}
-            align={'center'}
-            alignSelf={'center'}
-            position={'relative'}>
-            <Link to='/register'>
+          {!isAuth &&
+            <Stack
+              direction={'column'}
+              spacing={2}
+              align={'center'}
+              alignSelf={'center'}
+              position={'relative'}>
+              <Link to='/register'>
 
-              <Button
-                colorScheme={'teal'}
-                rounded={'full'}
-                px={6}
-              >
-                Get Started
-              </Button>
-            </Link>
-          </Stack>
+                <Button
+                  colorScheme={'teal'}
+                  rounded={'full'}
+                  px={6}
+                >
+                  Get Started
+                </Button>
+              </Link>
+            </Stack>
+          }
+          {isAuth &&
+            <Stack
+              direction={'column'}
+              spacing={2}
+              align={'center'}
+              alignSelf={'center'}
+              position={'relative'}>
+              <Link to='/dash'>
+
+                <Button
+                  colorScheme={'teal'}
+                  rounded={'full'}
+                  px={6}
+                >
+                  Dashboard
+                </Button>
+              </Link>
+            </Stack>
+          }
         </Stack>
       </Container>
     </>

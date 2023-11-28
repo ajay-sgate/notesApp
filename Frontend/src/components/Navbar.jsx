@@ -1,7 +1,7 @@
 import { Avatar, Box, Button, Center, CloseButton, Flex, HStack, IconButton, Menu, MenuButton, MenuDivider, MenuItem, MenuList, Tooltip, VStack, Wrap, WrapItem, chakra, useColorMode, useColorModeValue, useDisclosure, useToast } from "@chakra-ui/react";
 import { AiOutlineMenu } from 'react-icons/ai';
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { SignoutFun } from "../redux/authReducer/action";
 import { MoonIcon, SunIcon } from '@chakra-ui/icons'
 import { FaPowerOff } from "react-icons/fa";
@@ -15,8 +15,13 @@ const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode()
   const bg = useColorModeValue("white", "gray.800");
   const mobileNav = useDisclosure();
+  let location = useLocation()
+
 
   const handleSignOut = () => {
+
+
+
     dispatch(SignoutFun())
     toast({
       title: "Log out Success",
@@ -62,7 +67,7 @@ const Navbar = () => {
             >
 
 
-              {!isAuth &&
+              {!isAuth && !location.pathname == "/login" &&
                 <Link to='/login'>
                   <Button colorScheme="teal">Log in</Button>
                 </Link>
@@ -96,18 +101,18 @@ const Navbar = () => {
                     </Center>
                     <br />
                     {/* <MenuDivider /> */}
-                    <hr/>
-                    <MenuItem px={"16"} _hover={{bgColor:"blue.100"}} >
-                      <Link to="/dash">
-                        <Button variant="link" color={"black"} _hover={{ textDecoration: "none" }}>Dashboard</Button>
+                    <hr />
+                    <MenuItem px={location.pathname === "/dash" ? "20" : "16"} _hover={{ bgColor: "blue.100" }} >
+                      <Link to ={location.pathname === "/dash" ? "/" : "/dash"}>
+                        <Button variant="link" color={"black"} _hover={{ textDecoration: "none" }}>{location.pathname === "/dash" ? "Home" : "Dashboard"}</Button>
                       </Link></MenuItem>
 
-  
-                    <MenuItem px={"20"} _hover={{bgColor:"red.500" , color:"white"}} textAlign={"center"}>
 
-                      <Button onClick={handleSignOut} color={"black"}  variant={"link"} _hover={{ textDecoration: "none" , color:"white"}}>Logout</Button>
+                    <MenuItem px={"20"} _hover={{ bgColor: "red.500", color: "white" }} textAlign={"center"}>
+
+                      <Button onClick={handleSignOut} color={"black"} variant={"link"} _hover={{ textDecoration: "none", color: "white" }}>Logout</Button>
                     </MenuItem>
-  
+
                   </MenuList>
                 </Menu>
               }

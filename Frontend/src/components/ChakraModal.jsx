@@ -93,6 +93,7 @@ export default function ChakraModal() {
             <Button colorScheme='blue' mr={3} isDisabled={!notesData.title || !notesData.content} onClick={handleSubmit}>
               Create
             </Button>
+            
             <Button onClick={onClose}>Cancel</Button>
           </ModalFooter>
         </ModalContent>
