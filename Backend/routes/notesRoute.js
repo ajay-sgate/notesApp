@@ -7,11 +7,23 @@ const NotesRouter = express.Router();
 
 NotesRouter.get("/", async (req, res) => {
     const { user_id } = req.body
+    // try {
+    //     const [results] = await db.promise().query("SELECT * FROM notes WHERE user_id=? ORDER BY id DESC", [user_id])
+    //     res.status(200).json(results)
+    // } catch (err) {
+    //     res.status(400).json({ msg: err })
+    // }
+
+    const { limit = 8, offset = 0 } = req.query;
+
     try {
-        const [results] = await db.promise().query("SELECT * FROM notes WHERE user_id=? ORDER BY id DESC", [user_id])
-        res.status(200).json(results)
+        const [results] = await db.promise().query(
+            "SELECT * FROM notes WHERE user_id=? ORDER BY id DESC LIMIT ? OFFSET ?",
+            [user_id, parseInt(limit), parseInt(offset)]
+        );
+        res.status(200).json(results);
     } catch (err) {
-        res.status(400).json({ msg: err })
+        res.status(400).json({ msg: err });
     }
 })
 

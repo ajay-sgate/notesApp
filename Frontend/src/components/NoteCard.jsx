@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import EditModal from './EditModal';
 import ViewModal from './ViewModal';
 import { DeleteIcon } from '@chakra-ui/icons'
-const NoteCard = ({ note, onDelete }) => {
+const NoteCard = ({ note, onDelete, getData }) => {
 
   const truncateText = (text, limit) => {
     return (text.length > limit ? text.slice(0, limit) + " ..." : text);
@@ -35,7 +35,7 @@ const NoteCard = ({ note, onDelete }) => {
         </Text>
         <Flex mt={4} justifyContent={"space-around"}>
 
-          <EditModal note={note} />
+          <EditModal note={note} getData={getData} />
 
           <ViewModal note={note} />
           <Tooltip label='Delete Note'>
@@ -45,6 +45,7 @@ const NoteCard = ({ note, onDelete }) => {
             </Button>
           </Tooltip>
         </Flex>
+        .
       </Box>
     </motion.div>
   );

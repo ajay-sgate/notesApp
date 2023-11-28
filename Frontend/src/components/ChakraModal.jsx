@@ -3,7 +3,7 @@ import { useRef, useState } from "react"
 import { useDispatch } from "react-redux"
 import { GetFail, GetFunc, GetSuccess, PostFail, PostFunc, PostSuccess } from "../redux/notesReducer/action"
 
-export default function ChakraModal() {
+export default function ChakraModal({getData}) {
   const toast = useToast();
   const dispatch = useDispatch()
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -21,15 +21,6 @@ export default function ChakraModal() {
       return { ...notesData, [e.target.name]: e.target.value }
     })
 
-  }
-
-  const getData = () => {
-    dispatch(GetFunc).then((res) => {
-      dispatch(GetSuccess(res.data))
-    }).catch((err) => {
-      dispatch(GetFail)
-
-    })
   }
 
   const handleSubmit = () => {
@@ -93,7 +84,7 @@ export default function ChakraModal() {
             <Button colorScheme='blue' mr={3} isDisabled={!notesData.title || !notesData.content} onClick={handleSubmit}>
               Create
             </Button>
-            
+
             <Button onClick={onClose}>Cancel</Button>
           </ModalFooter>
         </ModalContent>

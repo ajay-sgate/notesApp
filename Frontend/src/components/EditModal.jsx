@@ -3,7 +3,7 @@ import { useRef, useState } from "react"
 import { useDispatch } from "react-redux"
 import { GetFail, GetFunc, GetSuccess, PostFail, PostFunc, PostSuccess, UpdateFail, UpdateFunc, UpdateSuccess } from "../redux/notesReducer/action"
 import { EditIcon } from '@chakra-ui/icons'
-export default function EditModal({ note }) {
+export default function EditModal({ note, getData }) {
     const toast = useToast();
     const dispatch = useDispatch()
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -24,14 +24,14 @@ export default function EditModal({ note }) {
 
     }
 
-    const getData = () => {
-        dispatch(GetFunc).then((res) => {
-            dispatch(GetSuccess(res.data))
-        }).catch((err) => {
-            dispatch(GetFail)
+    // const getData = () => {
+    //     dispatch(GetFunc).then((res) => {
+    //         dispatch(GetSuccess(res.data))
+    //     }).catch((err) => {
+    //         dispatch(GetFail)
 
-        })
-    }
+    //     })
+    // }
 
     const handleSubmit = () => {
 

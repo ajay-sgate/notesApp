@@ -15,10 +15,10 @@ export const GetFail = (dispatch) => {
     dispatch({ type: GET_FAILED })
 }
 
-export const GetFunc = (dispatch) => {
+export const GetFunc = (limit,offset) => (dispatch) => {
     let authToken = localStorage.getItem("token")
     dispatch({ type: GET_REQUEST })
-    return axios.get(`${baseUrl}/`, {
+    return axios.get(`${baseUrl}?limit=${limit}&offset=${offset}`, {
         headers: { 'Authorization': `Bearer ${authToken}` }
     })
 }
