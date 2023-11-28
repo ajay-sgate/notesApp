@@ -18,28 +18,25 @@ const Dashboard = () => {
 
     const handleDelete = (noteId) => {
         // Implement delete functionality and update state
-        if (confirm("Alert! You want to delete this note ?") == true) {
-            // console.log(noteId,"delete btn")
 
-            dispatch(DeleteFunc(noteId)).then((res) => {
-                dispatch(DeleteSuccess)
-                getData()
-                toast({
-                    title: res.data.message,
-                    status: "warning",
-                    position: "top-center",
-                    isClosable: true,
-                })
-            }).catch((err) => {
-                dispatch(DeleteFail)
-                toast({
-                    title: err.response.data.msg,
-                    status: "error",
-                    position: "top-center",
-                    isClosable: true,
-                })
+        dispatch(DeleteFunc(noteId)).then((res) => {
+            dispatch(DeleteSuccess)
+            getData()
+            toast({
+                title: res.data.message,
+                status: "warning",
+                position: "top-center",
+                isClosable: true,
             })
-        }
+        }).catch((err) => {
+            dispatch(DeleteFail)
+            toast({
+                title: err.response.data.msg,
+                status: "error",
+                position: "top-center",
+                isClosable: true,
+            })
+        })
     };
 
     const handleEdit = (noteId) => {
@@ -48,7 +45,7 @@ const Dashboard = () => {
     };
 
     const getData = () => {
-        dispatch(GetFunc(limit,page*limit)).then((res) => {
+        dispatch(GetFunc(limit, page * limit)).then((res) => {
             dispatch(GetSuccess(res.data))
         }).catch((err) => {
             dispatch(GetFail)
@@ -91,7 +88,7 @@ const Dashboard = () => {
 
                         <Center gap={2}>
                             <Button isDisabled={page == 0} colorScheme="teal" onClick={() => handlePagination(-1)}>Prev</Button>
-                            <Button>{page+1}</Button>
+                            <Button>{page + 1}</Button>
                             <Button isDisabled={notes.length < limit} colorScheme="teal" onClick={() => handlePagination(+1)}>Next</Button>
                         </Center>
 

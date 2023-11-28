@@ -15,7 +15,7 @@ export default function DeleteModal({ onDelete, note }) {
 
     return (
         <>
-            <Tooltip label='Delete Note'>
+            <Tooltip label='Delete Note' hasArrow>
                 <Button
                     colorScheme="red"
                     onClick={() => {

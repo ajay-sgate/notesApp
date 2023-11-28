@@ -25,12 +25,18 @@ const NoteCard = ({ note, onDelete, getData }) => {
     >
       <Box bgColor="white" p={6} maxW={"100%"} borderRadius="lg"
         boxShadow="lg" >
-        <Text mb={2} fontWeight="bold" fontSize="xl" color={"black"}>
-          Title: {truncateText(note.title, 15)}
-        </Text>
-        <Text mb={2} color={"black"} >
-          Content: {truncateText(note.content, 20)}
-        </Text>
+        <Tooltip label={note.title} hasArrow>
+
+          <Text mb={2} fontWeight="bold" fontSize="xl" color={"black"}>
+            Title: {truncateText(note.title, 15)}
+          </Text>
+        </Tooltip>
+        <Tooltip label={note.content} hasArrow>
+
+          <Text mb={2} color={"black"} >
+            Content: {truncateText(note.content, 20)}
+          </Text>
+        </Tooltip>
         <Text mb={2} fontSize="sm" color="gray.500">
           Created at: {new Date(note.created_at).toLocaleString()}
         </Text>
@@ -38,12 +44,11 @@ const NoteCard = ({ note, onDelete, getData }) => {
 
           <EditModal note={note} getData={getData} />
 
-          <ViewModal note={note} />
+          {/* <ViewModal note={note} /> */}
 
-        <DeleteModal onDelete={onDelete} note={note}/>
-          
+          <DeleteModal onDelete={onDelete} note={note} />
+
         </Flex>
-        .
       </Box>
     </motion.div>
   );
