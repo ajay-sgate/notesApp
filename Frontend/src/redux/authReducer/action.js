@@ -22,6 +22,7 @@ export const SignupFun = (formData) => (dispatch) => {
 
 export const SigninSuc = (payload) => (dispatch) => {
     dispatch({ type: SIGNIN_SUCCESS, payload: payload })
+    sessionStorage.setItem("isAuth", true)
 }
 
 export const SigninFail = (dispatch) => {
@@ -38,5 +39,6 @@ export const SigninFun = (formData) => (dispatch) => {
 
 export const SignoutFun = () => {
     localStorage.removeItem("token")
+    sessionStorage.removeItem("isAuth")
     return { type: SIGNOUT_SUCCESS }
 }

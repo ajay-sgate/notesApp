@@ -81,10 +81,10 @@ const Login = () => {
             <Stack spacing={6}>
                 <Input placeholder="Enter your Email" name="email" type="email" value={formData.email} onChange={(e) => handleChange(e)} isRequired />
                 <Input type="password" placeholder="Enter your Password" name="password" value={formData.password} onChange={(e) => handleChange(e)} isRequired />
-                <Button isDisabled={!formData.email || !formData.password} colorScheme="teal" onClick={handleSubmit}>Login</Button>
+                <Button isDisabled={!formData.email || !formData.password} colorScheme="blue" onClick={handleSubmit}>Login</Button>
                 <Center mt={4}>
                     <Link to="/register">
-                        <Button>Join Us</Button>
+                        <Button  colorScheme="teal">Join Us</Button>
                     </Link>
                 </Center>
             </Stack>

@@ -41,7 +41,7 @@ const SocialButton = ({
 export default function Footer() {
   return (
     <Box
-    width={"full"}
+      width={"full"}
       bg={useColorModeValue('gray.150', 'gray.900')}
       color={useColorModeValue('gray.700', 'gray.200')}>
       <Container
@@ -54,7 +54,7 @@ export default function Footer() {
         align={{ base: 'center', md: 'center' }}>
         <Text>© 2023 Notes App. All rights reserved</Text>
         <Stack direction={'row'} spacing={6}>
-          <SocialButton label={'Twitter'} href={'#'}>
+          <SocialButton label={'Twitter'} href={'#'} >
             <FaTwitter />
           </SocialButton>
           <SocialButton label={'YouTube'} href={'#'}>

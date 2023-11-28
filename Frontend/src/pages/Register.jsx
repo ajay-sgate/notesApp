@@ -77,10 +77,10 @@ const Register = () => {
                 <Input placeholder="Enter your Name" name="name" type="text" value={formData.name} onChange={(e) => handleChange(e)} isRequired />
                 <Input placeholder="Enter your Email" name="email" type="email" value={formData.email} onChange={(e) => handleChange(e)} isRequired />
                 <Input type="password" placeholder="Enter your Password" name="password" value={formData.password} onChange={(e) => handleChange(e)} isRequired />
-                <Button isDisabled={!formData.name || !formData.email || !formData.password} colorScheme="teal" onClick={handleSubmit}>Register</Button>
+                <Button isDisabled={!formData.name || !formData.email || !formData.password} colorScheme="blue" onClick={handleSubmit}>Register</Button>
                 <Center mt={4}>
                     <Link to="/login">
-                        <Button>Already Registered</Button>
+                        <Button colorScheme="teal">Already Registered</Button>
                     </Link>
                 </Center>
             </Stack>
