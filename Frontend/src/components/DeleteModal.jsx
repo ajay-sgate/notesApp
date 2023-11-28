@@ -34,7 +34,7 @@ export default function DeleteModal({ onDelete, note }) {
                         <Text>Do you want to delete this note ?</Text>
                     </ModalBody>
                     <ModalFooter gap={4}>
-                        <Button colorScheme="teal" onClick={onClose}>No</Button>
+                        <Button colorScheme="green" onClick={onClose}>No</Button>
                         <Button colorScheme="red" onClick={() => onDelete(note.id)}>Yes</Button>
                     </ModalFooter>
                 </ModalContent>

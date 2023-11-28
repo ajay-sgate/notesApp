@@ -56,7 +56,7 @@ export default function ChakraModal({getData}) {
 
   return (
     <>
-      <Button colorScheme="teal" onClick={onOpen}>Create Note</Button>
+      <Button colorScheme="orange" onClick={onOpen}>Create New Note</Button>
 
       <Modal
         initialFocusRef={initialRef}
@@ -81,11 +81,11 @@ export default function ChakraModal({getData}) {
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme='blue' mr={3} isDisabled={!notesData.title || !notesData.content} onClick={handleSubmit}>
+            <Button colorScheme='green' mr={3} isDisabled={!notesData.title || !notesData.content} onClick={handleSubmit}>
               Create
             </Button>
 
-            <Button onClick={onClose}>Cancel</Button>
+            <Button colorScheme="red" onClick={onClose}>Cancel</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

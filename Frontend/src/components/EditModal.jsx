@@ -67,7 +67,7 @@ export default function EditModal({ note, getData }) {
             <Tooltip label='Edit Note' hasArrow>
 
 
-                <Button colorScheme="teal" onClick={onOpen}>
+                <Button colorScheme="blue" onClick={onOpen}>
                     <EditIcon />
                 </Button>
 

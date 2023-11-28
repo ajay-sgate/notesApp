@@ -116,9 +116,9 @@ const Navbar = () => {
                   </MenuList>
                 </Menu>
               }
-              <Tooltip label={colorMode === 'light' ? 'dark mode' : 'light mode'}>
+              <Tooltip label={colorMode === 'light' ? 'dark mode' : 'light mode'} hasArrow>
 
-                <Button bgColor={"none"} onClick={toggleColorMode}>
+                <Button  onClick={toggleColorMode}>
                   {colorMode === 'light' ? <MoonIcon /> : <SunIcon color={"orange"} />}
                 </Button>
               </Tooltip>
