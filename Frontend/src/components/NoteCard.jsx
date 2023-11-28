@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import EditModal from './EditModal';
 import ViewModal from './ViewModal';
 import { DeleteIcon } from '@chakra-ui/icons'
+import DeleteModal from './DeleteModal';
 const NoteCard = ({ note, onDelete, getData }) => {
 
   const truncateText = (text, limit) => {
@@ -38,12 +39,9 @@ const NoteCard = ({ note, onDelete, getData }) => {
           <EditModal note={note} getData={getData} />
 
           <ViewModal note={note} />
-          <Tooltip label='Delete Note'>
-            <Button colorScheme="red" onClick={() => onDelete(note.id)}>
 
-              <DeleteIcon />
-            </Button>
-          </Tooltip>
+        <DeleteModal onDelete={onDelete} note={note}/>
+          
         </Flex>
         .
       </Box>
